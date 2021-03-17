@@ -29,7 +29,8 @@
     UMConfigInstance.channelId = call.arguments[@"channel"];
     UMConfigInstance.bCrashReportEnabled = call.arguments[@"catchUncaughtExceptions"];
     [MobClick startWithConfigure:UMConfigInstance];
-    
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    [MobClick setAppVersion:[NSString stringWithFormat:@"%@-%@",[infoDic objectForKey:@"CFBundleShortVersionString"],[infoDic objectForKey:@"CFBundleVersion"]]];
     [MobClick setLogEnabled:call.arguments[@"logEnabled"]];
     [MobClick setEncryptEnabled:call.arguments[@"encryptEnabled"]];
     [MobClick setLogSendInterval:[call.arguments[@"sessionContinueMillis"] doubleValue]];
