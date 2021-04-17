@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 /// Umeng analytics plugin
@@ -18,17 +17,17 @@ class UmengAnalyticsPlugin {
   /// [sessionContinueMillis] time in milliseconds to upload analytics data.
   /// [catchUncaughtExceptions] whether to catch uncaught exceptions, default for true.
   /// [pageCollectionMode] how to collect page data, leave it AUTO is ok, for future details, read umeng doc.
-  static Future<bool> init({
-    @required String androidKey,
-    @required String iosKey,
-    String channel,
+  static Future<bool?> init({
+    required String androidKey,
+    required String iosKey,
+    String? channel,
     bool logEnabled = false,
     bool encryptEnabled = false,
     int sessionContinueMillis = 30000,
     bool catchUncaughtExceptions = true,
     String pageCollectionMode = 'AUTO',
   }) async {
-    Map<String, dynamic> map = {
+    var map = <String, dynamic>{
       'androidKey': androidKey,
       'iosKey': iosKey,
       'channel': channel,
@@ -43,8 +42,8 @@ class UmengAnalyticsPlugin {
   }
 
   /// Send a page start event for [viewName]
-  static Future<bool> pageStart(String viewName) async {
-    Map<String, dynamic> map = {
+  static Future<bool?> pageStart(String viewName) async {
+    var map = <String, dynamic>{
       'viewName': viewName,
     };
 
@@ -52,8 +51,8 @@ class UmengAnalyticsPlugin {
   }
 
   /// Send a page end event for [viewName]
-  static Future<bool> pageEnd(String viewName) async {
-    Map<String, dynamic> map = {
+  static Future<bool?> pageEnd(String viewName) async {
+    var map = <String, dynamic>{
       'viewName': viewName,
     };
 
@@ -61,8 +60,8 @@ class UmengAnalyticsPlugin {
   }
 
   /// Send a general event for [eventId] with a [label]
-  static Future<bool> event(String eventId, {String label= 'label'}) async {
-    Map<String, dynamic> map = {
+  static Future<bool?> event(String eventId, {String? label= 'label'}) async {
+    var map = <String, dynamic>{
       'eventId': eventId,
     };
 
